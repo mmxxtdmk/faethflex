@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gregory Albert Fletcher Junior • Senior Engineer & Speaker for Tech Teams</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        :root {
+            --bg: #0c0c0c;
+            --accent: #c9a227;
+            --accent2: #b71c1c;
+            --text: #e8e8e8;
+            --gray: #1f1f1f;
+            --border: #444444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'VT323', monospace;
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(#1a1a1a 1px, transparent 1px),
+                linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(201, 162, 39, 0.04) 50%
+            );
+            background-size: 100% 6px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: scan 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 120px; }
+        }
+
+        header {
+            border-bottom: 6px solid var(--accent);
+            background: #000;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 0 3px var(--accent2) inset;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 26px;
+            color: var(--accent);
+            text-shadow: 
+                0 0 8px var(--accent),
+                0 0 16px var(--accent2);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 17px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at center, transparent 45%, rgba(201,162,39,0.08) 100%),
+                url('images/hero.png') center/cover no-repeat;
+            filter: contrast(110%) brightness(55%) grayscale(30%);
+            z-index: -1;
+        }
+
+        .cybersigil {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 380px;
+            background: transparent;
+            border: 5px solid var(--accent);
+            box-shadow: 
+                0 0 50px var(--accent),
+                0 0 100px rgba(183,28,28,0.5),
+                inset 0 0 70px rgba(183,28,28,0.3);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: pulse 4s infinite alternate ease-in-out;
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 160px;
+            color: var(--accent2);
+            text-shadow: 0 0 30px currentColor;
+        }
+
+        @keyframes pulse {
+            from { transform: translate(-50%, -50%) scale(0.94) rotate(-1deg); }
+            to { transform: translate(-50%, -50%) scale(1.06) rotate(1deg); }
+        }
+
+        .hero-content {
+            max-width: 860px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 62px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 
+                0 0 15px var(--accent),
+                5px 5px 0 var(--accent2);
+        }
+
+        .hero .tagline {
+            font-size: 27px;
+            color: #ddd;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .hero .subtag {
+            font-size: 21px;
+            color: #bbb;
+            max-width: 720px;
+            margin: 0 auto 50px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            border: 5px solid var(--accent);
+            padding: 22px 52px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 0 0 6px rgba(183,28,28,0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 30px var(--accent);
+            transform: scale(1.04);
+        }
+
+        section {
+            padding: 110px 40px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 44px;
+            color: var(--accent);
+            margin-bottom: 70px;
+            text-align: center;
+            text-shadow: 3px 3px 0 var(--accent2);
+            border-bottom: 5px solid var(--accent2);
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .about {
+            background: var(--gray);
+            border: 6px solid var(--accent2);
+            padding: 70px;
+            font-size: 21px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .about p {
+            margin-bottom: 28px;
+        }
+
+        .about strong {
+            color: var(--accent);
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .card {
+            background: #111;
+            border: 5px solid var(--accent);
+            padding: 42px 32px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 0 0 25px rgba(201,162,39,0.15);
+        }
+
+        .card:hover {
+            border-color: var(--accent2);
+            transform: translateY(-12px);
+            box-shadow: 0 0 45px rgba(183,28,28,0.5);
+        }
+
+        .card h3 {
+            font-size: 26px;
+            margin-bottom: 22px;
+            color: var(--accent);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #0a0a0a;
+            border-top: 10px solid var(--accent);
+            border-bottom: 10px solid var(--accent2);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #111;
+            border: 4px solid var(--accent);
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent2);
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .project-info {
+            padding: 28px;
+        }
+
+        .project-info h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        /* Photo Carousel */
+        .photo-carousel {
+            background: var(--gray);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .carousel-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 6px solid var(--accent);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 520px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: var(--accent);
+            border: 3px solid var(--accent);
+            width: 50px;
+            height: 50px;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+
+        .contact {
+            background: var(--gray);
+        }
+
+        form {
+            max-width: 720px;
+            margin: 0 auto;
+            display: grid;
+            gap: 28px;
+        }
+
+        input, textarea {
+            background: #0a0a0a;
+            border: 4px solid var(--accent);
+            color: var(--text);
+            padding: 20px;
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px var(--accent2);
+        }
+
+        button {
+            background: var(--accent2);
+            color: #fff;
+            border: none;
+            padding: 26px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+        }
+
+        button:hover {
+            background: var(--accent);
+            color: #000;
+            transform: scale(1.03);
+        }
+
+        footer {
+            background: #000;
+            border-top: 6px solid var(--accent);
+            padding: 50px 40px;
+            text-align: center;
+            font-size: 16px;
+            color: #777;
+        }
+
+        .glitch {
+            animation: glitch 1.2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-1px, 1px); }
+            80% { transform: translate(1px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        .section-divider {
+            height: 8px;
+            background: linear-gradient(to right, var(--accent), var(--accent2), var(--accent));
+            margin: 70px 0;
+        }
+
+        .full-name {
+            font-size: 26px;
+            color: var(--accent);
+            margin-top: 8px;
+            letter-spacing: 4px;
+            text-shadow: 
+                0 0 8px var(--accent),
+                0 0 16px var(--accent),
+                4px 4px 0 var(--accent2),
+                -2px -2px 0 var(--accent2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scanline"></div>
+
+    <header>
+        <div class="logo">G A F J</div>
+        <nav>
+            <a href="#about">ORIGIN</a>
+            <a href="#highlights">IMPACTS</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#gallery">GALLERY</a>
+            <a href="#contact">ENGAGE</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="cybersigil">⚡</div>
+        <div class="hero-content">
+            <h1 class="glitch">GREGORY ALBERT<br>FLETCHER JUNIOR</h1>
+            <p class="full-name">DATA-AGNOSTIC ENGINEER • FORTUNE 500 FINTECH BUILDER</p>
+            <p class="tagline">Built engineering teams from zero. Survived acquisition. Still scaling.</p>
+            <p class="subtag">
+                I didn't set out to become a speaker. After my role was made redundant following a major buyout at a Fortune 500 fintech, a senior remote engineer peer said: “You need to be talking to tech teams about this.” So I started sharing what actually works when everything gets rewritten.
+            </p>
+            <a href="#contact" class="cta-button">SECURE A TRANSMISSION →</a>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="about">
+        <h2>THE TRANSMISSION</h2>
+        <div class="about">
+            <p>
+                I am a senior engineer who, at a Fortune 500 fintech, <strong>built an engineering team from scratch</strong> to deliver a new product at scale. We went from zero to a functioning, high-velocity team operating inside one of the largest and most complex technology organizations in the world.
+            </p>
+            <p>
+                Then the acquisition hit. My role was made redundant in the restructuring. That moment taught me a raw truth most corporate decks never mention: surviving a buyout means you either get acquired again or you figure out how to scale yourself and your ideas into something that sells. I’m still deep in that journey — rebuilding, shipping, and refusing to coast in an AI-driven industry that moves faster every quarter.
+            </p>
+            <p>
+                A peer who is a senior remote engineer casually suggested I start speaking to technical teams and leaders facing the same pressures: post-acquisition chaos, velocity collapse, team rebuilds, and the constant need to prove value again. 
+                What began as raw war stories from the trenches has become focused keynotes on execution mindsets that actually work when the ground shifts under you.
+            </p>
+            <p>
+                No fluff. No “you got this” slogans. Just frameworks forged in real Fortune 500 fire by someone still in the fight.
+            </p>
+        </div>
+    </section>
+
+    <section id="highlights" style="background:#111;">
+        <h2>RECENT TRANSMISSIONS</h2>
+        <div class="highlights">
+            <div class="card">
+                <h3>→ ZERO TO SHIP</h3>
+                <p>Built and led an engineering team from scratch for a new product at a Fortune 500 fintech. Delivered working systems under intense enterprise constraints and tight timelines.</p>
+            </div>
+            <div class="card">
+                <h3>→ SCALE OR DIE</h3>
+                <p>Drew directly from experience inside a 60,000+ technologist environment. Teams walked away with practical changes to sprint rituals, ownership models, and delivery under pressure.</p>
+            </div>
+            <div class="card">
+                <h3>→ POST-ACQUISITION RESET</h3>
+                <p>For engineers and leaders navigating restructuring or redundancy. Real talk on rebuilding momentum, protecting velocity, and turning survival mode into forward motion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>PROJECTS &amp; ENGAGEMENTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="images/project1.png" alt="Zero to Ship Team Build" class="project-image">
+                <div class="project-info">
+                    <h3>New Product Engineering Team – Fortune 500 Fintech</h3>
+                    <p>Recruited, onboarded, and led a brand-new engineering team from zero to production delivery of a new product at scale.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/project2.png" alt="Project 2" class="project-image">
+                <div class="project-info">
+                    <h3>New Machine Learning Intelligence Resource Community - Grassroots Volunteer Effort</h3>
+                    <p>Founded, scaled and managed a community of machine learning professionals to drive innovation, knowledge sharing, collaboration and onboarding opportunities.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="images/project3.png" alt="Project 3" class="project-image">
+                <div class="project-info">
+                    <h3>Blockchain Technology Implementation</h3>
+                    <p>Designed and implemented a blockchain solution to enhance transparency and security in financial transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="photo-carousel">
+        <h2>IN THE FIELD</h2>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide"><img src="images/gallery1.png" alt="Gallery Image 1"></div>
+                <div class="carousel-slide"><img src="images/gallery2.png" alt="Gallery Image 2"></div>
+                <div class="carousel-slide"><img src="images/gallery3.png" alt="Gallery Image 3"></div>
+                <div class="carousel-slide"><img src="images/gallery4.png" alt="Gallery Image 4"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+        </div>
+        <p style="margin-top:20px; font-size:18px; color:#999;">Scroll or use arrows • All images from <strong>images/</strong> folder</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>INITIATE ENGAGEMENT</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="NAME / ORGANIZATION" required>
+            <input type="email" placeholder="EMAIL ADDRESS" required>
+            <input type="text" placeholder="EVENT / COMPANY">
+            <textarea rows="7" placeholder="DETAILS: DESIRED DATE • AUDIENCE SIZE • KEY OUTCOMES • TOPIC FOCUS" required></textarea>
+            <button type="submit">TRANSMIT REQUEST →</button>
+        </form>
+        <p style="text-align:center; margin-top:45px; font-size:19px;">
+            Direct transmission: <strong style="color:var(--accent);">greg@faethflex.com</strong><br>
+            <small>Typical response window: within 24 hours</small>
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 GREGORY ALBERT FLETCHER JUNIOR • ALL RIGHTS RESERVED • DELAWARE / LONG WIRE AND SHORT TRIP</p>
+        <p style="margin-top:12px; font-size:15px;">
+            Senior engineer still in the trenches — sharing what actually works after Fortune 500 turbulence.
+        </p>
+    </footer>
+
+    <script>
+        // Contact form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Request transmitted. You will receive a response within 24 hours.");
+            this.reset();
+        });
+
+        // Simple image carousel
+        let currentSlide = 0;
+        const track = document.getElementById('carouselTrack');
+        const slides = track.children;
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Auto-advance every 6 seconds
+        setInterval(() => {
+            nextSlide();
+        }, 6000);
+
+        // Glitch effect on scroll
+        window.addEventListener('scroll', () => {
+            const h1 = document.querySelector('.glitch');
+            if (window.scrollY > 300) {
+                h1.style.animation = 'none';
+                setTimeout(() => h1.style.animation = 'glitch 0.8s infinite', 10);
+            }
+        });
+    </script>
+</body>
+</html>
